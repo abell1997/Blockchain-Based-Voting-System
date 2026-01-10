@@ -322,6 +322,11 @@ button, .btn{
     text-decoration: underline;
 }
 
+.textstyle{
+    margin-top: 1rem; 
+    text-align: center;
+}
+
 .actions{
     display: flex;
     gap: 0.5rem;
