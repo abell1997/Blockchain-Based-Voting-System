@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const VOTES_KEY = 'votechain_votes';
 
     // Initialize Mock Data if empty
-    if (!localStorage.getItem(USERS_KEY)) {
+    if(!localStorage.getItem(USERS_KEY)){
         const initialUsers = [
             { fullname: 'System Admin', email: 'admin@example.com', password: 'password', role: 'admin' },
             { fullname: 'Test Voter', email: 'voter@example.com', password: 'password', role: 'voter' }
@@ -13,33 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(USERS_KEY, JSON.stringify(initialUsers));
     }
 
-    if (!localStorage.getItem(VOTES_KEY)) {
+    if(!localStorage.getItem(VOTES_KEY)){
         localStorage.setItem(VOTES_KEY, JSON.stringify({ 'Candidate A': 0, 'Candidate B': 0, 'Candidate C': 0 }));
     }
 
     // Router / Page Logic
     const path = window.location.pathname;
 
-    if (path.endsWith('login.html')) {
+    if(path.endsWith('login.html')){
         handleLogin();
-    } else if (path.endsWith('register.html')) {
+    } 
+    else if(path.endsWith('register.html')){
         handleRegister();
-    } else if (path.endsWith('voter-dashboard.html')) {
+    }
+     else if(path.endsWith('voter-dashboard.html')){
         checkAuth('voter');
         handleVoterDashboard();
-    } else if (path.endsWith('admin-dashboard.html')) {
+    }
+     else if(path.endsWith('admin-dashboard.html')){
         checkAuth('admin');
         handleAdminDashboard();
-    } else if (path.endsWith('vote.html')) {
+    }
+     else if(path.endsWith('vote.html')){
         checkAuth('voter');
         handleVotePage();
     }
 
     // Authentication Functions
-    function handleLogin() {
+    function handleLogin(){
         const loginForm = document.getElementById('loginForm');
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => {
+        if (loginForm){loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = e.target.email.value;
                 const password = e.target.password.value;
@@ -47,23 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 const users = JSON.parse(localStorage.getItem(USERS_KEY));
                 const user = users.find(u => u.email === email && u.password === password);
 
-                if (user) {
+                if (user){
                     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-                    if (user.role === 'admin') {
+                    if(user.role === 'admin') {
                         window.location.href = 'admin-dashboard.html';
-                    } else {
+                    } else{
                         window.location.href = 'voter-dashboard.html';
                     }
-                } else {
+                } else{
                     alert('Invalid credentials');
                 }
             });
         }
     }
 
-    function handleRegister() {
+    function handleRegister(){
         const registerForm = document.getElementById('registerForm');
-        if (registerForm) {
+        if (registerForm){
             registerForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const fullname = e.target.fullname.value;
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const users = JSON.parse(localStorage.getItem(USERS_KEY));
 
-                if (users.some(u => u.email === email)) {
+                if(users.some(u => u.email === email)){
                     alert('Email already registered');
                     return;
                 }
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function checkAuth(requiredRole) {
+    function checkAuth(requiredRole){
         const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
         if (!currentUser) {
             window.location.href = 'login.html';
@@ -95,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Simple role check. Admin can access "admin" pages. Voter can access "voter" pages.
         // In a real app, logic might be more complex.
-        if (requiredRole && currentUser.role !== requiredRole) {
+        if(requiredRole && currentUser.role !== requiredRole){
             alert('Access Denied');
             window.location.href = currentUser.role === 'admin' ? 'admin-dashboard.html' : 'voter-dashboard.html';
         }
