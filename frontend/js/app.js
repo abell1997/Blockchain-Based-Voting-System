@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         handleCreatePoll();
     }
 
-    // Authentication Functions
     function handleLogin(){
         const loginForm = document.getElementById('loginForm');
         if (loginForm){
@@ -145,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Display User Name/Email
         const userNameDisplay = document.getElementById('userName');
         if (userNameDisplay) userNameDisplay.textContent = currentUser.fullName || currentUser.email;
 
