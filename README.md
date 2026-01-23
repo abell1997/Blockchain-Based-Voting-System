@@ -1,6 +1,6 @@
 # VoteChain - Blockchain-Based Voting Prototype
 
-VoteChain is a simple prototype of a blockchain-based voting system. It demonstrates a simple voting process where votes are recorded on a mock blockchain to ensure integrity (simulated). This project separates the Frontend (Client) and Backend (Application/Blockchain Layer).
+This Voting system is a simple prototype of a blockchain-based voting system. It demonstrates a simple voting process where votes are recorded on a mock blockchain to ensure integrity. This project separates the Frontend (Client) and Backend (Application/Blockchain Layer).
 
 ## 🚀 Purpose & Scope
 This project serves as a proof-of-concept for a secure voting application.
@@ -25,7 +25,7 @@ This project serves as a proof-of-concept for a secure voting application.
 *   **Storage**: In-memory JavaScript objects (for Users and Blockchain).
 
 ## 👥 Demo Accounts
-You can use these pre-seeded accounts to test the application immediately:
+You can use these demo accounts to test the application immediately:
 
 | Role | Email | Password |
 | :--- | :--- | :--- |
@@ -48,7 +48,7 @@ You can use these pre-seeded accounts to test the application immediately:
     ```
 3.  Start the server:
     ```bash
-    npm start or node server.js
+    node server.js
     ```
 4.  Open your browser and visit:
     **`http://localhost:3000/login.html`**
