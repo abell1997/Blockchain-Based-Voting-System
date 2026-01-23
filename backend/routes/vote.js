@@ -20,12 +20,7 @@ router.get('/results', (req, res) => {
  * Cast a vote for a candidate
  */
 router.post('/vote', (req, res) => {
-    // Current frontend sends: { voterId, candidateId } but "candidateId" holds the name "Candidate A"
-    // Adjusting extraction to match frontend expectation or backend service
     const { voterId, candidate } = req.body;
-    // Support both naming conventions if needed, or stick to one. 
-    // mockBlockchain uses 'vote(voterId, candidate)'
-    // We will assume frontend sends { voterId, candidate: "Candidate A" }
 
     if (!voterId || !candidate) {
         return res.status(400).json({ message: 'Voter ID and Candidate are required' });

@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Current User Session Key (Keep for session persistence)
     const CURRENT_USER_KEY = 'votechain_current_user';
 
-    // Helper: Show Notification
+    // To show notification messages
     function showNotification(message, type = 'success', redirectUrl = null) {
         const notification = document.getElementById('notification');
         if (notification) {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
             notification.className = `notification ${type}`;
             notification.style.display = 'block';
 
-            // Hide after 3 seconds
             setTimeout(() => {
                 notification.style.display = 'none';
                 if (redirectUrl) {
@@ -18,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 3000);
         } else {
-            // Fallback if element missing
             alert(message);
             if (redirectUrl) {
                 window.location.href = redirectUrl;
@@ -140,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Setup Logout Button
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
@@ -159,15 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dashboard Functions
     function handleVoterDashboard() {
-        // Future: Fetch if user has voted status?
     }
 
     async function handleAdminDashboard() {
         try {
             const response = await fetch('/api/results');
-            const votes = await response.json(); // Expecting { "Candidate A": 0, ... }
+            const votes = await response.json();
 
-            // Populate total votes
             const totalVotesElement = document.getElementById('totalVotes');
             if (totalVotesElement && votes) {
                 const total = Object.values(votes).reduce((a, b) => a + b, 0);
@@ -230,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // New: Handle Create Poll Page Logic
     function handleCreatePoll() {
         const addCandidateBtn = document.getElementById('addCandidateBtn');
         const container = document.getElementById('candidatesContainer');
@@ -253,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
             createPollForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                // Collect Data
                 const title = document.getElementById('pollTitle').value;
                 const candidateInputs = document.querySelectorAll('input[name="candidate[]"]');
                 const candidates = Array.from(candidateInputs).map(input => input.value).filter(val => val.trim() !== "");
@@ -263,10 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // In a real app, we'd send this to the backend
                 console.log("Creating Poll:", title, candidates);
-                
-                // Simulation for Prototype
+     
                 showNotification("Poll Created Successfully!", "success", "admin-dashboard.html");
             });
         }

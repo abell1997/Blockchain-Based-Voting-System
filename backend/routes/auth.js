@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 // Mock User Database
-const users = [
+const users = [  //Demo accounts
     {
         id: '1',
         fullName: 'Admin User',
         email: 'admin@example.com',
-        password: 'password', // Plain text as per requirements
+        password: 'password', 
         role: 'admin',
         hasVoted: false
     },
@@ -28,12 +28,10 @@ const users = [
 router.post('/register', (req, res) => {
     const { fullName, email, password, role } = req.body;
 
-    // Basic Validation
     if (!fullName || !email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check if user exists
     if (users.find(u => u.email === email)) {
         return res.status(400).json({ message: 'User already exists' });
     }
@@ -43,13 +41,12 @@ router.post('/register', (req, res) => {
         fullName,
         email,
         password,
-        role: role || 'voter', // Default to voter
+        role: role || 'voter',
         hasVoted: false
     };
 
     users.push(newUser);
-    
-    // Return user info (excluding password)
+
     const { password: _, ...userWithoutPassword } = newUser;
     res.status(201).json({ message: 'Registration successful', user: userWithoutPassword });
 });
@@ -71,7 +68,7 @@ router.post('/login', (req, res) => {
     res.json({ 
         message: 'Login successful', 
         user: userWithoutPassword,
-        token: 'mock-jwt-token-' + user.id // Mock token for frontend to store
+        token: 'mock-jwt-token-' + user.id 
     });
 });
 
