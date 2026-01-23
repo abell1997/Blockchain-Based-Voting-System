@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteChain - Create Poll</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <div class="dashboard-canvas">
+        <div class="dashboard-container" style = "max-width: 700px;">
+            <header class="dashboard-header">
+                <div>
+                    <h1>Create New Poll</h1>
+                    <div id="notification" class="notification"></div>
+                </div>
+                <div class="user-info">
+                    <button class="btn btn-ghost" onclick="window.location.href='admin-dashboard.html'">Back to Dashboard</button>
+                </div>
+            </header>
+
+            <form id="createPollForm" class="createPollForm">
+                <div class="form-group">
+                    <label for="pollTitle">Poll Title</label>
+                    <input type="text" id="pollTitle" name="pollTitle" placeholder="e.g. Student Council President" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Candidates</label>
+                    <div id="candidatesContainer">
+                        <input type="text" name="candidate[]" placeholder="Candidate Name" class="candidate-input" required>
+                        <input type="text" name="candidate[]" placeholder="Candidate Name" class="candidate-input" required>
+                    </div>
+                </div>
+
+                <button type="button" id="addCandidateBtn" class="btn btn-ghost btn-sm">+ Add Candidate</button>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Create Poll</button>
+                    <button type="button" class="btn btn-ghost" onclick="window.location.href='admin-dashboard.html'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+@import url('notification.css');
+
 :root{
     --primary-color: hsl(204, 70%, 53%);
     --secondary-color: hsl(210, 29%, 24%);
@@ -339,6 +341,37 @@ button, .btn{
 
 #voteResults{
     display: none
+}
+
+/* For Create-poll page */
+ .createPollForm input{
+    margin-bottom: 0.5rem;
+ }
+
+ #addCandidateBtn{
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+ }
+
+ /* for Notifications styles */
+ .notification {
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    display: none; 
+}
+
+.notification.error {
+    background-color: #FEF2F2;
+    color: #af1212;
+    margin-left: 0.5rem
+}
+
+.notification.success {
+    background-color: #ECFDF5;
+    color: #065F46;
+    border: 1px solid #6EE7B7;
 }
 
 
