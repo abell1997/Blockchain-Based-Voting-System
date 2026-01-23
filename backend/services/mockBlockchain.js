@@ -6,30 +6,25 @@
 class MockBlockchainService {
     constructor() {
         console.log("Initializing Mock Blockchain Service...");
-        // internal memory to simulate the "blockchain" ledger
         this.chain = [];
-        // structured to match the candidates in the frontend
         this.votes = {
             "Candidate A": 0,
             "Candidate B": 0,
             "Candidate C": 0
         }; 
-        this.voters = {}; // userId -> boolean (hasVoted)
+        this.voters = {}; 
         this.votingOpen = true;
     }
 
     /**
      * Checks if a voter has already voted
-     * @param {string} voterId 
-     * @returns {boolean}
+      @param {string} voterId 
+     @returns {boolean}
      */
     hasVoted(voterId) {
         return !!this.voters[voterId];
     }
 
-    /**
-     * Simulates casting a vote transaction
-     */
     vote(voterId, candidate) {
         if (!this.votingOpen) {
             throw new Error("Voting is closed.");
@@ -47,7 +42,6 @@ class MockBlockchainService {
         this.votes[candidate]++;
         this.voters[voterId] = true;
 
-        // Add block to chain (simulation)
         const block = {
             index: this.chain.length + 1,
             timestamp: new Date().toISOString(),
@@ -60,13 +54,9 @@ class MockBlockchainService {
         return { transactionHash: "0x" + Math.random().toString(16).substr(2, 64), blockNumber: this.chain.length };
     }
 
-    /**
-     * Retrieves current voting results
-     */
     getResults() {
         return this.votes;
     }
 }
 
-// Export a singleton instance
 module.exports = new MockBlockchainService();
